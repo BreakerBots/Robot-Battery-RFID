@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import json
 import ntcore
+import time
 from mfrc522 import SimpleMFRC522
 
 ntInst = ntcore.NetworkTableInstance.getDefault()
@@ -15,17 +16,17 @@ yearPub = batteryDatatable.getIntegerTopic("battery/year").publish()
 capPub = batteryDatatable.getDoubleTopic("battery/cap").publish()
 typePub = batteryDatatable.getStringTopic("battery/type").publish()
 mfgPub = batteryDatatable.getStringTopic("battery/mfg").publish()
-readBattPub.setDefault(False)
-tagIDPub.setDefault(0)
-battIDPub.setDefault(0)
-yearPub.setDefault(0)
-capPub.setDefault(0.0)
-typePub.setDefault("NONE")
-mfgPub.setDefault("NONE")
 try:
     reader = SimpleMFRC522()
-    hasReadBattery= False
-    while(not hasReadBattery):
+    hasReadBattery = False
+    while(True):
+        readBattPub.setDefault(False)
+        tagIDPub.setDefault(0)
+        battIDPub.setDefault(0)
+        yearPub.setDefault(0)
+        capPub.setDefault(0.0)
+        typePub.setDefault("NONE")
+        mfgPub.setDefault("NONE")
         try:
             id, text = reader.read()
             batteryData = json.loads(text)
@@ -48,6 +49,6 @@ try:
             mfgPub.set(batteryData[4])
         except:
             print("READ ERROR, RETRYING")
-            hasReadBattery = False
+        time.sleep(2)
 finally:
     GPIO.cleanup()
