@@ -8,7 +8,7 @@ ntInst.startClient4("Battery Reader")
 ntInst.setServerTeam(5104)
 ntInst.startDSClient()
 batteryDatatable = ntInst.getTable("Battery")
-readBattpub = batteryDatatable.getBooleanTopic("has_tag").publish()
+readBattPub = batteryDatatable.getBooleanTopic("has_tag").publish()
 tagIDPub = batteryDatatable.getIntegerTopic("tag_id").publish()
 battIDPub = batteryDatatable.getIntegerTopic("battery/id").publish()
 yearPub = batteryDatatable.getIntegerTopic("battery/year").publish()
@@ -44,5 +44,3 @@ try:
             hasReadBattery = False
 finally:
     GPIO.cleanup()
-            
-        
