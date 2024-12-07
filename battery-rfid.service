@@ -1,0 +1,16 @@
+[Unit]
+Description=RFID Battery Reader
+After=network.target
+Requires=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/breakerbots/battery-rfid.sh
+ProtectSystem=true
+PrivateTmp=true
+NoNewPrivileges=true
+User=breakerbots
+
+[Install]
+WantedBy=multi-user.target
+Alias=battery-rfid.service
