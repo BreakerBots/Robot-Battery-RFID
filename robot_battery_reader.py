@@ -15,6 +15,13 @@ yearPub = batteryDatatable.getIntegerTopic("battery/year").publish()
 capPub = batteryDatatable.getDoubleTopic("battery/cap").publish()
 typePub = batteryDatatable.getStringTopic("battery/type").publish()
 mfgPub = batteryDatatable.getStringTopic("battery/mfg").publish()
+readBattPub.setDefault(False)
+tagIDPub.setDefault(0)
+battIDPub.setDefault(0)
+yearPub.setDefault(0)
+capPub.setDefault(0.0)
+typePub.setDefault("NONE")
+mfgPub.setDefault("NONE")
 try:
     reader = SimpleMFRC522()
     hasReadBattery= False
