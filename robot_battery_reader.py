@@ -3,7 +3,7 @@ import json
 import ntcore
 from mfrc522 import SimpleMFRC522
 
-ntInst = ntcore.NetworkTablesInstance.getDefault()
+ntInst = ntcore.NetworkTableInstance.getDefault()
 ntInst.startClient4("Battery Reader")
 ntInst.setServerTeam(5104)
 ntInst.startDSClient()
