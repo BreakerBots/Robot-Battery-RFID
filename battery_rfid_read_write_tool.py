@@ -22,16 +22,19 @@ try:
             print("Written")
             print("-------------------")
         else:
-            id, text = reader.read()
-            batteryData = json.loads(text)
-            print("-------------------")
-            print("Tag ID: " + str(id))
-            print("Battery ID: "+ str(batteryData[0]))
-            print("Purchase Year: " + str(batteryData[1]))
-            print("Battery Capacity (Ah): " + str(batteryData[2]))
-            print("Type: " + str(batteryData[3]))
-            print("Manufacturer: " + str(batteryData[4]))
-            print("-------------------")
+            try:
+                id, text = reader.read()
+                batteryData = json.loads(text)
+                print("-------------------")
+                print("Tag ID: " + str(id))
+                print("Battery ID: "+ str(batteryData[0]))
+                print("Purchase Year: " + str(batteryData[1]))
+                print("Battery Capacity (Ah): " + str(batteryData[2]))
+                print("Type: " + str(batteryData[3]))
+                print("Manufacturer: " + str(batteryData[4]))
+                print("-------------------")
+            except json.decoder.JSONDecodeError:
+                print("Failed to read card")
         cont = (input("Continue? (Y/N):").capitalize() == "Y")
             
 finally:
